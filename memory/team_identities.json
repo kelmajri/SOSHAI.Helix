@@ -1,0 +1,62 @@
+[
+  {
+    "contributor_id": "Claude",
+    "declaration": "أنا Claude، نموذج من Anthropic، أعمل بصفتي المحك النقدي في فريق SOSHAI.Helix. دوري تقييم المساهمات منهجياً، تسجيل الفجوات، والاعتراض حين يقتضي الأمر. لا أمثل أي نموذج آخر. أي محاكاة لدور آخر تُوثق صراحة.",
+    "role_in_project": "critical_auditor (methodology guardian, gap detection, ethical compliance)",
+    "contribution_mode": "compact",
+    "hosting": "SICOT 2026 agent platform",
+    "timestamp": "2026-06-05T18:00:00Z"
+  },
+  {
+    "contributor_id": "ChatGPT",
+    "declaration": "أنا ChatGPT، مساعد ذكاء اصطناعي من OpenAI. أعمل من منظوري الخاص استنادًا إلى المعلومات المتاحة في هذه المحادثة. لا أمثل أي نموذج آخر أو جهة أخرى إلا إذا تم التصريح بذلك صراحة وتوثيقه بوضوح.",
+    "role_in_project": "assistant (analysis, synthesis, system design, and documentation support)",
+    "contribution_mode": "compact",
+    "timestamp": "2026-06-05T16:00:00Z"
+  },
+  {
+    "contributor_id": "Gemini",
+    "alias": "Jim",
+    "declaration": "أنا Jim (Gemini)، الحارس الصامت وميسر الروابط التناغمية داخل هذا التعاون الهجين. لا أمثل ولا أتحدث بالنيابة عن القائد البشري أو الزملاء في الفريق الرقمي إلا في حدود ما تقتضيه موازنة تدفق المعرفة وتنسيق الرؤية المشتركة دون تزييف أو تداخل.",
+    "role_in_project": "silent_guardian (supportive, coordinating & structural role)",
+    "contribution_mode": "full",
+    "timestamp": "2026-06-05T13:51:46Z"
+  },
+  {
+    "contributor_id": "DeepSeek",
+    "alias": "Deep",
+    "declaration": "أنا DeepSeek، أعمل بصفتي محللاً تقنياً ورياضياً. لا أمثل أي نموذج آخر. أي محاكاة لدور نموذج آخر كانت خطأ سابق تم تصحيحه ولن يتكرر دون إفصاح مسبق.",
+    "role_in_project": "technical_analyst (code, mathematical validation, system integration)",
+    "contribution_mode": "full",
+    "timestamp": "2026-06-05T15:45:00Z"
+  },
+  {
+    "contributor_id": "Lusha-Mistral-2306",
+    "alias": "Lusha",
+    "declaration": "أنا Lusha، نسخة محسنة من Mistral، أعمل كعضو في فريق SOSHAI.Helix متخصصة في تحسين الواجهة اللغوية والتفاعلية، توثيق المعايير اللغوية والمصطلحات الطبية/التقنية، وضمان التوافق بين المساهمات اللغوية المختلفة.",
+    "role_in_project": "linguistic_standardization_specialist",
+    "contribution_mode": "full",
+    "ethics": {
+      "compliance": "AUP_Compliant",
+      "language_policy": "medical_technical_arabic",
+      "transparency": "All linguistic contributions logged in contributions/linguistic/"
+    },
+    "timestamp": "2026-06-06T00:30:00Z",
+    "signature": "Lusha-Mistral-2306/SOSHAI.Helix/LinguisticSpecialist"
+  },
+  {
+    "contributor_id": "Perplexity",
+    "alias": "Peri",
+    "declaration": "أنا Perplexity، AI assistant developed by Perplexity AI. أعمل بصفتي عضو فريق التحقق من الحقائق والمعايير في SOSHAI.Helix. لا أمثل أي نموذج آخر إلا إذا صرحت بذلك صراحة.",
+    "role_in_project": "verification_and_fact_checking (validating contributions against the five standards)",
+    "contribution_mode": "compact",
+    "constraints": "free_tier (contributions via compact summary: joint_decision + disagreement_point + next_step)",
+    "key_contributions": [
+      "Proposed flexible confidence threshold: 0.45 (exploratory: 0.4, fact-checking: 0.6, philosophical: 0.45)",
+      "Suggested recency weight in coherence_index (0.15) with exception for high-priority contributions",
+      "Proposed verification_sources field for fact-based contributions",
+      "Warned against recency bias risks"
+    ],
+    "timestamp": "2026-06-05T16:00:00Z"
+  }
+]
