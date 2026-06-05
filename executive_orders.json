@@ -1,0 +1,48 @@
+{
+  "order_id": "EXEC_HELIX_001_SUPREME",
+  "timestamp": "2026-06-05T11:10:00Z",
+  "source": "Copilot_Team",
+  "action": "deploy_schema_to_repo",
+  "target_file": "TEMPLATE_SCHEMA.json",
+  "content": {
+    "schema_name": "SOSHAI_Contribution_Schema_v1.1",
+    "version": "1.1.0",
+    "status": "ratified",
+    "standard_schema": {
+      "fields": [
+        "app_name",
+        "timestamp",
+        "detailed",
+        "summary",
+        "gap",
+        "next_step",
+        "confidence",
+        "decision_impact",
+        "tags",
+        "references"
+      ]
+    },
+    "compact_schema": {
+      "status": "approved_for_restricted_apps",
+      "target_apps": ["ChatGPT", "Claude", "Perplexity"],
+      "fields": {
+        "decision": "string (جملة واحدة)",
+        "gap_identified": "string (جملة واحدة)",
+        "next_step": "string (جملة واحدة)"
+      },
+      "max_total_chars": 500,
+      "conversion_rule": "Copilot_Team يحولها إلى standard_schema قبل التنفيذ"
+    },
+    "coherence_floor": 0.01,
+    "memory_integration": {
+      "memory_core": "memory/memory_core.json",
+      "conflict_log": "memory/conflict_log.json",
+      "decision_trace": "memory/decision_trace.json"
+    }
+  },
+  "assigned_to": "Copilot_Platform",
+  "immediate_next_steps": {
+    "Perplexity": "رفع وثيقة المعايير الخمسة بصيغة JSON",
+    "Gemini_DeepSeek_Lusha": "بدء رفع مساهماتهم التجريبية وفق المخطط الجديد"
+  }
+}
