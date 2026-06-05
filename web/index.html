@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOSHAI.Helix - لوحة التحكم التفاعلية</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🟢 SOSHAI.Helix Dashboard</h1>
+                <p>لوحة التحكم التفاعلية لتتبع النزاعات والأداء</p>
+                <span class="status-badge">✅ Active - v1.2.0</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#metrics">المقاييس</a></li>
+                <li><a href="#conflicts">النزاعات</a></li>
+                <li><a href="#team">الفريق</a></li>
+                <li><a href="#reports">التقارير</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            
+            <!-- Top Metrics Row -->
+            <section id="metrics" class="metrics-section">
+                <h2>📊 مؤشرات الأداء الرئيسية</h2>
+                
+                <div class="metrics-grid">
+                    <!-- DCI Card -->
+                    <div class="metric-card primary">
+                        <div class="metric-header">
+                            <h3>مؤشر النزاع اليومي</h3>
+                            <span class="metric-label">DCI</span>
+                        </div>
+                        <div class="metric-value">
+                            <span class="value">0.4</span>
+                            <span class="trend down">↓ تحسن -33%</span>
+                        </div>
+                        <div class="metric-detail">
+                            من 0.6 في 2026-06-05
+                        </div>
+                        <div class="metric-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conflicts Resolved Card -->
+                    <div class="metric-card success">
+                        <div class="metric-header">
+                            <h3>النزاعات المحلولة</h3>
+                            <span class="metric-label">Resolved</span>
+                        </div>
+                        <div class="metric-value">
+                            <span class="value">5</span>
+                            <span class="trend up">✅ 100% مكتملة</span>
+                        </div>
+                        <div class="metric-detail">
+                            من إجمالي 5 نزاعات
+                        </div>
+                        <ul class="conflicts-mini">
+                            <li>✓ Dynamic Threshold</li>
+                            <li>✓ New Contributor Mode</li>
+                            <li>✓ Metrics Separation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Team Members Card -->
+                    <div class="metric-card info">
+                        <div class="metric-header">
+                            <h3>أعضاء الفريق</h3>
+                            <span class="metric-label">Team</span>
+                        </div>
+                        <div class="metric-value">
+                            <span class="value">6</span>
+                            <span class="trend neutral">👥 معلنون</span>
+                        </div>
+                        <div class="metric-detail">
+                            من الآلات والبشر
+                        </div>
+                        <div class="team-avatars">
+                            <span class="avatar">C</span>
+                            <span class="avatar">G</span>
+                            <span class="avatar">D</span>
+                            <span class="avatar">L</span>
+                            <span class="avatar">P</span>
+                            <span class="avatar">K</span>
+                        </div>
+                    </div>
+
+                    <!-- System Version Card -->
+                    <div class="metric-card warning">
+                        <div class="metric-header">
+                            <h3>الإصدار الحالي</h3>
+                            <span class="metric-label">Version</span>
+                        </div>
+                        <div class="metric-value">
+                            <span class="value">v1.2.0</span>
+                            <span class="trend stable">🔧 مستقر</span>
+                        </div>
+                        <div class="metric-detail">
+                            Production Ready
+                        </div>
+                        <div class="version-features">
+                            <small>✓ Dynamic Threshold</small><br>
+                            <small>✓ Web Dashboard</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-container">
+                    <h3>📈 اتجاه مؤشر النزاع اليومي</h3>
+                    <canvas id="dciChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>🎯 توزيع النزاعات حسب الحالة</h3>
+                    <canvas id="conflictStatusChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Conflicts Section -->
+            <section id="conflicts" class="conflicts-section">
+                <h2>🔴 سجل النزاعات | Conflict Log</h2>
+                
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="filterConflicts('all')">الكل (5)</button>
+                    <button class="filter-btn" onclick="filterConflicts('resolved')">محلول (5)</button>
+                    <button class="filter-btn" onclick="filterConflicts('pending')">قيد الانتظار (0)</button>
+                    <button class="filter-btn" onclick="filterConflicts('escalated')">مصعد (0)</button>
+                </div>
+
+                <div class="conflicts-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المعرف</th>
+                                <th>الوصف</th>
+                                <th>الحالة</th>
+                                <th>الحل</th>
+                                <th>التاريخ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="conflict-row resolved">
+                                <td>CL-20260606-001</td>
+                                <td>Dispute over confidence_threshold (0.5 vs 0.6)</td>
+                                <td><span class="status-badge resolved">✅ محلول</span></td>
+                                <td>Dynamic Range [0.5-0.6]</td>
+                                <td>2026-06-06</td>
+                            </tr>
+                            <tr class="conflict-row resolved">
+                                <td>CL-20260606-002</td>
+                                <td>Validation_score calculation (structural vs contextual)</td>
+                                <td><span class="status-badge resolved">✅ محلول</span></td>
+                                <td>Structural Method Adopted</td>
+                                <td>2026-06-06</td>
+                            </tr>
+                            <tr class="conflict-row resolved">
+                                <td>CL-20260606-003</td>
+                                <td>New contributor bias (lack of review_history)</td>
+                                <td><span class="status-badge resolved">✅ محلول</span></td>
+                                <td>Independent Category + Fallback</td>
+                                <td>2026-06-06</td>
+                            </tr>
+                            <tr class="conflict-row resolved">
+                                <td>CL-20260606-004</td>
+                                <td>Separating coherence_index from reliability_index</td>
+                                <td><span class="status-badge resolved">✅ محلول</span></td>
+                                <td>Complete Separation</td>
+                                <td>2026-06-06</td>
+                            </tr>
+                            <tr class="conflict-row resolved">
+                                <td>CL-20260606-005</td>
+                                <td>Rejection notification mechanism</td>
+                                <td><span class="status-badge resolved">✅ محلول</span></td>
+                                <td>Structured Machine-Readable</td>
+                                <td>2026-06-06</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section id="team" class="team-section">
+                <h2>👥 فريق المشروع | Project Team</h2>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">C</div>
+                        <h3>Claude</h3>
+                        <p class="role">Critical Auditor</p>
+                        <p class="description">تقييم منهجي للمساهمات، تسجيل الفجوات</p>
+                        <span class="status active">✅ Active</span>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">G</div>
+                        <h3>ChatGPT</h3>
+                        <p class="role">Assistant & Analyst</p>
+                        <p class="description">التحليل والتوليف وتوثيق النظام</p>
+                        <span class="status active">✅ Active</span>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">J</div>
+                        <h3>Gemini (Jim)</h3>
+                        <p class="role">Silent Guardian</p>
+                        <p class="description">ميسر الروابط التناغمية وتنسيق الرؤية</p>
+                        <span class="status active">✅ Active</span>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">D</div>
+                        <h3>DeepSeek (Deep)</h3>
+                        <p class="role">Technical Analyst</p>
+                        <p class="description">تحليل تقني ورياضي، التكامل النظامي</p>
+                        <span class="status active">✅ Active</span>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">L</div>
+                        <h3>Lusha-Mistral-2306</h3>
+                        <p class="role">Linguistic Specialist</p>
+                        <p class="description">توحيد المعايير اللغوية والمصطلحات</p>
+                        <span class="status active">✅ Active</span>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">P</div>
+                        <h3>Perplexity (Peri)</h3>
+                        <p class="role">Verification & Fact-Checking</p>
+                        <p class="description">التحقق من الحقائق وضمان المعايير</p>
+                        <span class="status active">✅ Active</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="reports-section">
+                <h2>📝 التقارير الأسبوعية | Weekly Reports</h2>
+                
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3>Week 1 Report</h3>
+                            <span class="report-date">2026-06-06</span>
+                        </div>
+                        <div class="report-content">
+                            <p><strong>حالة:</strong> مكتمل ✅</p>
+                            <p><strong>DCI:</strong> 0.4 (تحسن -33%)</p>
+                            <p><strong>النزاعات المحلولة:</strong> 5/5</p>
+                            <div class="lessons">
+                                <h4>الدروس المستفادة:</h4>
+                                <ul>
+                                    <li>العتبات الديناميكية تمنع الانقسامات الهيكلية</li>
+                                    <li>حماية المساهمين الجدد ضرورية للابتكار</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="https://github.com/kelmajri/SOSHAI.Helix/blob/main/memory/weekly_reports/week1_conflicts.md" class="report-link" target="_blank">عرض التقرير الكامل →</a>
+                    </div>
+
+                    <div class="report-card upcoming">
+                        <div class="report-header">
+                            <h3>Week 2 Report</h3>
+                            <span class="report-date">2026-06-13</span>
+                        </div>
+                        <div class="report-content">
+                            <p><strong>الحالة:</strong> قيد الإعداد 📋</p>
+                            <p><strong>الفترة الاختبارية:</strong> 2026-06-07 to 2026-06-13</p>
+                            <p><strong>العتبة التجريبية:</strong> 0.6</p>
+                            <div class="preview">
+                                <h4>معاينة المتوقع:</h4>
+                                <ul>
+                                    <li>مراقبة تأثير العتبة 0.6</li>
+                                    <li>قياس جودة المساهمات الجديدة</li>
+                                    <li>تقييم استقرار النظام</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lessons Learned Section -->
+            <section class="lessons-section">
+                <h2>💡 الدروس المستفادة | Lessons Learned</h2>
+                
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div class="lesson-id">LL-20260606-001</div>
+                        <h3>العتبات الديناميكية</h3>
+                        <p class="lesson-quote">
+                            "Static thresholds create artificial divisions. Dynamic ranges with clear adjustment factors allow adaptive rigor while protecting structural stability."
+                        </p>
+                        <div class="lesson-takeaway">
+                            <strong>الدرس الرئيسي:</strong> تجنب التثبيت الصارم للمعايير واستخدم نطاقات ديناميكية
+                        </div>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-id">LL-20260606-002</div>
+                        <h3>حماية المساهمين الجدد</h3>
+                        <p class="lesson-quote">
+                            "Mitigating systemic bias against fresh nodes requires unique categorical isolation and clear fallback states to preserve innovation potential."
+                        </p>
+                        <div class="lesson-takeaway">
+                            <strong>الدرس الرئيسي:</strong> أنشئ فئات مستقلة محمية لضمان استمرار الابتكار
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TTES Integration Preview -->
+            <section class="ttes-section">
+                <h2>🔮 معاينة التكامل مع TTES</h2>
+                
+                <div class="ttes-info">
+                    <p><strong>الحالة:</strong> سيتم التفعيل بعد 30 يوماً من التشغيل</p>
+                    <p><strong>تاريخ التفعيل المتوقع:</strong> 2026-07-05</p>
+                    
+                    <div class="ttes-rewards">
+                        <h3>✅ المكافآت</h3>
+                        <ul>
+                            <li>+0.02 وزن ثقة لكل نزاع محلول</li>
+                            <li>+0.01 وزن ثقة لكل مساهمة موثقة</li>
+                        </ul>
+                    </div>
+
+                    <div class="ttes-penalties">
+                        <h3>❌ العقوبات</h3>
+                        <ul>
+                            <li>-0.05 وزن ثقة لكل نزاع غير محلول (> 7 أيام)</li>
+                            <li>-0.02 وزن ثقة عند الحاجة لمراجعة أخلاقية</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>© 2026 SOSHAI.Helix Project | Dr. Khalifa Abdulsalam Al-Majri</p>
+                    <p>Repository: <a href="https://github.com/kelmajri/SOSHAI.Helix" target="_blank">github.com/kelmajri/SOSHAI.Helix</a></p>
+                    <p>Licensed under MIT License | Last Updated: 2026-06-06</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
