@@ -1,0 +1,65 @@
+{
+  "report_metadata": {
+    "report_id": "CRR-20260606-001",
+    "date": "2026-06-06",
+    "repository": "SOSHAI.Helix",
+    "daily_conflict_index": 0.4,
+    "lessons_learned": [
+      "رفع العتبة بشكل جامد يخلق انقساماً بنيوياً، والحلول الديناميكية تحمي استقرار النظام.",
+      "المساهمون الجدد يحتاجون معاملة كفئة مستقلة محمية لحفظ التنوع الإبداعي."
+    ],
+    "integration_with_TTES": {
+      "enabled": false,
+      "activation_date": "after_30_days_of_operation",
+      "impact_on_trust": "Agents with >3 unresolved conflicts see trust_weight reduced by 0.05 per conflict.",
+      "note": "TTES integration will begin once sufficient historical data is available."
+    }
+  },
+  "conflicts": [
+    {
+      "conflict_id": "CL-20260606-001",
+      "description": "Dispute over confidence_threshold value (0.5 vs 0.6)",
+      "status": "resolved_via_dynamic_range",
+      "resolution": {
+        "strategy": "Dynamic adjustment model + experimental period",
+        "implementation": "Base threshold set to 0.5 (dynamic range [0.5-0.6]). Experimental threshold set to 0.6 for one week (2026-06-07 to 2026-06-13)."
+      }
+    },
+    {
+      "conflict_id": "CL-20260606-002",
+      "description": "Validation_score calculation method (structural vs contextual)",
+      "status": "resolved",
+      "resolution": {
+        "strategy": "Structural method adopted",
+        "implementation": "Validation_score based on field completeness, metadata validity, schema compliance, and gap/next_step clarity."
+      }
+    },
+    {
+      "conflict_id": "CL-20260606-003",
+      "description": "New contributor bias due to lack of review_history",
+      "status": "resolved",
+      "resolution": {
+        "strategy": "Independent category with neutral fallback",
+        "implementation": "new_contributor_mode = true, default_review_history = null, fallback_review_history = 0.7"
+      }
+    },
+    {
+      "conflict_id": "CL-20260606-004",
+      "description": "Separating coherence_index from reliability_index",
+      "status": "resolved",
+      "resolution": {
+        "strategy": "Complete separation",
+        "implementation": "coherence_index calculated via Jaccard and priority, reliability_index tracks effective_confidence and review_history."
+      }
+    },
+    {
+      "conflict_id": "CL-20260606-005",
+      "description": "Rejection notification mechanism",
+      "status": "resolved",
+      "resolution": {
+        "strategy": "Structured machine-readable notification",
+        "implementation": "Return status REVIEW_REQUIRED with explicit reason, threshold, actual value, and action."
+      }
+    }
+  ]
+}
