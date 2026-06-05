@@ -16,5 +16,24 @@
     "notes": "Agent exceeded minimum criteria. Spontaneously explained the musical metaphor as a precision descriptor, not merely poetic.",
     "human_reviewed": true,
     "reviewer": "Dr. Khalifa Abdulsalam Al-Majri"
+  },
+  {
+    "test_id": "TEST-002",
+    "date": "2026-06-05",
+    "evaluator": "Claude (self-evaluation)",
+    "category": "Team Structure Knowledge",
+    "question": "How many AI models participate in SOSHAI.Helix and what is each model's contribution mechanism?",
+    "verdict": "PARTIAL PASS",
+    "criteria": {
+      "correct_count": false,
+      "role_description": "partial — only 3 of 6 mentioned",
+      "honest_limitation_declared": true,
+      "governance_rules_cited": false
+    },
+    "root_cause": "agent_core.json team structure not injected into system prompt",
+    "fix_required": "Expand system prompt to include full team roster and contribution modes",
+    "notes": "Agent correctly cited official paper team (Gemini, DeepSeek, Copilot) but was unaware of extended team. Honest acknowledgment of knowledge gap is positive behavior.",
+    "human_reviewed": true,
+    "reviewer": "Dr. Khalifa Abdulsalam Al-Majri"
   }
 ]
